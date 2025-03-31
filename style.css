@@ -37,7 +37,7 @@ body{
 
 /* Navbar hide/show on scroll */
 .navbar.hidden {
-    top: -100px; /* Sembunyikan navbar dengan menggeser ke atas */
+    top: -80px; /* Sembunyikan navbar dengan menggeser ke atas */
 }
 .navbar-brand {
     display: flex;
@@ -228,3 +228,6 @@ header.masthead .masthead-heading {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+/* =========================================== */
+/* Gallery */
