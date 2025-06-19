@@ -1,0 +1,294 @@
+    /* Navbar Background Fix */
+#mainNav {
+    background-color: #212529; /* Warna gelap untuk navbar */
+    backdrop-filter: blur(10px); /* Efek blur untuk background */
+    -webkit-backdrop-filter: blur(10px); /* Untuk Safari */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Alternatif dengan gradient */
+#mainNav.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Untuk navbar yang scrolled */
+#mainNav.navbar-scrolled {
+    background-color: rgba(33, 37, 41, 0.95); /* Semi-transparan saat scroll */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling untuk logo dan brand */
+#mainNav .navbar-brand {
+    font-weight: 700;
+    color: #fff !important;
+}
+
+#mainNav .navbar-brand img {
+    height: 40px;
+    width: auto;
+    margin-right: 10px;
+}
+
+#mainNav .navbar-brand h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+/* Styling untuk nav links */
+#mainNav .navbar-nav .nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    transition: color 0.3s ease;
+}
+
+#mainNav .navbar-nav .nav-link:hover {
+    color: #ffc107 !important; /* Warna hover kuning */
+}
+
+/* Styling untuk dropdown */
+#mainNav .dropdown-menu {
+    background-color: #343a40;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#mainNav .dropdown-item {
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+#mainNav .dropdown-item:hover {
+    background-color: #495057;
+    color: #ffc107;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    #mainNav {
+        background-color: #212529 !important;
+    }
+    
+    #mainNav .navbar-brand h2 {
+        font-size: 1rem;
+    }
+}
+
+/* Base Styles */
+body {
+    font-family: 'montserrat', sans-serif;
+}
+
+.page-title {
+    text-align: center;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 50px;
+    position: relative;
+}
+        
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(135deg,rgb(0, 0, 0) 0%,#00d5ff 100%);
+}
+
+.page-section {
+    padding: 8rem 0;
+}
+
+.text-white-75 {
+    color: rgb(255, 255, 255) !important;
+}
+
+/* Card Styles */
+.card-info {
+    color: #000000 !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 10px !important;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+
+/* Header/Masthead Styles */
+header.masthead {
+    padding-top: 10.5rem;
+    padding-bottom: 6rem;
+    text-align: center;
+    color: #fff;
+    background-image: url("img/bg-web.png");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+header.masthead .masthead-subheading {
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 1.5rem;
+    margin-bottom: 25px;
+    font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+header.masthead .masthead-heading {
+    font-size: 3.25rem;
+    font-weight: 700;
+    line-height: 3.25rem;
+    margin-bottom: 2rem;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.page-header {
+    background: linear-gradient(rgba(24, 29, 56, .7), rgba(24, 29, 56, .7)), url(img/bg-web.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Schedule Card Styles */
+.schedule-card {
+    border: none;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.schedule-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.schedule-card .card-img {
+    z-index: 1;
+    position: relative;
+    object-fit: cover;
+    height: 250px;
+}
+
+.schedule-card:hover .card-img {
+    filter: brightness(1);
+}
+
+.schedule-card .card-img-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.schedule-card:hover .card-img-overlay {
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+}
+
+.schedule-card h5 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.schedule-card p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.schedule-card .time {
+    font-size: 0.9rem;
+    color: #a8ff00;
+}
+
+/* Button Styles */
+.btn-danger {
+    background-color: #ff0000;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #cc0000;
+    color: #fff;
+}
+
+/* Statistics Section */
+.statistik {
+    color: #000000 !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 10px !important;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    header.masthead {
+        padding-top: 17rem;
+        padding-bottom: 12.5rem;
+    }
+    
+    header.masthead .masthead-subheading {
+        font-size: 2.25rem;
+        font-style: italic;
+        line-height: 2.25rem;
+        margin-bottom: 2rem;
+    }
+    
+    header.masthead .masthead-heading {
+        font-size: 4.5rem;
+        font-weight: 700;
+        line-height: 4.5rem;
+        margin-bottom: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-card {
+        height: 250px;
+    }
+    
+    .gallery-card .card-img-top {
+        height: 170px;
+    }
+    
+    .contact-container {
+        flex-direction: column;
+    }
+    
+    .contact-form, .map-container {
+        width: 100%;
+    }
+    
+    .map-container {
+        margin-top: 30px;
+    }
+}
+
+footer {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}

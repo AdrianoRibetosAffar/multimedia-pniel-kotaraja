@@ -24,6 +24,7 @@ $statistik = mysqli_query($conn, "SELECT * FROM rayon");
     <meta charset="UTF-8">
     <title>Dashboard Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
     <link rel="stylesheet" href="admin.css">
 </head>
 <body>
@@ -36,13 +37,14 @@ $statistik = mysqli_query($conn, "SELECT * FROM rayon");
     <a href="tambah_berita.php">Gallery Berita</a>    
     <a href="statistik.php">Kelola Statistik</a>
     <a href="edit_live_streaming.php">Live Streaming</a>
+    <a href="pesan.php">Pesan Jemaat</a>
     <a href="logout.php">Logout</a>
 </div>
 
 <!-- Main Content -->
 <div class="content">
-    <h2>Selamat Datang di Dashboard Admin</h2>
-    <h4>Dashboard ini digunakan untuk mengelola data website Multimedia GKI Pniel Kotaraja</h4>
+    <h2 data-aos="fade-right" data-aos-duration="1000">Selamat Datang di Dashboard Admin</h2>
+    <h4 data-aos="fade-right" data-aos-duration="1000">Dashboard ini digunakan untuk mengelola data website Multimedia GKI Pniel Kotaraja</h4>
     
     <div class="row my-4">
         <div class="col-md-4">
@@ -76,5 +78,9 @@ $statistik = mysqli_query($conn, "SELECT * FROM rayon");
     </table>
 </div>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+        AOS.init();
+</script>
 </body>
 </html>

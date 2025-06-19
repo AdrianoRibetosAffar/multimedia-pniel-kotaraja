@@ -1,7 +1,7 @@
 <?php
 include('config/database.php');
 
-$berita = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC");
+$berita = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC LIMIT 6");
 $statistik = mysqli_query($conn, "SELECT * FROM rayon");
 
 // Untuk Chart
@@ -29,16 +29,37 @@ $link_youtube = $streaming['link_youtube'];
     <title>Multimedia GKI Pniel Kotaraja</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/logo-judul.png" />
-    <!-- Font Awesome icons (free version)-->
+    <!-- Font Awesome icons -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
+    <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
-    <link rel="stylesheet" href="style.css">
-    
+    <!-- CSS -->
+    <link rel="stylesheet" href="mulmed.css">
+    <style>     
+        .page-title {
+            text-align: center;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg,rgb(0, 0, 0) 0%,#00d5ff 100%);
+        }
+        
+    </style>
 </head>
 <body>
 
@@ -54,11 +75,19 @@ $link_youtube = $streaming['link_youtube'];
                 <i class="fas fa-bars ms-1"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <ul class="navbar-nav text-uppercase ms-auto py-1 py-lg-0">
                     <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="profile.html">Tentang Pniel</a></li>
+                            <li><a class="dropdown-item" href="multimedia-pniel.html">Multimedia Pniel</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -72,7 +101,7 @@ $link_youtube = $streaming['link_youtube'];
                 <br>
                 <p class="masthead-subheading">Di Website Multimedia GKI Pniel Kotaraja</p>
             </div>
-            <a class="btn btn-primary" data-aos="zoom-in"  data-aos-duration="1000" href="#services">Cek Gallery</a>
+            <a class="btn btn-primary" data-aos="zoom-in"  data-aos-duration="1000" href="gallery.php">Cek Gallery</a>
         </div>
     </header>
     
@@ -120,9 +149,9 @@ $link_youtube = $streaming['link_youtube'];
 
 <div class="container py-3">       
     <div class="row text-center" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="text-center" style="font-size:xx-large; font-weight: bolder; font-family: Montserrat">
-            JADWAL IBADAH GKI PNIEL KOTARAJA
-        </h2> 
+        <h2 class="page-title text-center" style="font-size:xx-large; font-weight: bolder; font-family: Montserrat">
+            JADWAL IBADAH UMUM
+        </h2>
         <br>
 
         <?php
@@ -132,7 +161,7 @@ $link_youtube = $streaming['link_youtube'];
             <div class="col-md-4 mb-4">
                 <div class="card schedule-card shadow-sm">
                     <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center text-white">
-                        <h5 class="text-uppercase fw-bold"><?= htmlspecialchars($row['hari']) ?></h5>
+                        <h5 class="text-uppercase fw-bold"> <?= htmlspecialchars($row['hari']) ?> </h5>
                         <p class="mb-0"><?= htmlspecialchars($row['judul']) ?></p>
                         <p class="time"><?= htmlspecialchars($row['jam']) ?></p>
                     </div>
@@ -144,33 +173,38 @@ $link_youtube = $streaming['link_youtube'];
     </div>
 </div>
     
-<div class="container py-5">
-        <h2 class="text-center mb-5" style="font-weight: bolder; font-family: Montserrat;">
+<div class="container py-3">
+    <div class="row text-center" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="page-title text-center mb-5" style="font-weight: bolder; font-family: Montserrat;">
             Gallery GKI Pniel
         </h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row equal-height-row">
             <?php while ($row = mysqli_fetch_assoc($berita)): ?>
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="uploads/<?= $row['gambar'] ?>" class="card-img-top" alt="gambar berita">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                        <h5 class="card-title text-center"><?= htmlspecialchars($row['judul']) ?></h5>
-                        <div class="text-center mt-3">
-                            <a href="#" class="btn btn-outline-dark">Selengkapnya</a>
-                        </div>
+            <div class="col-md-4 mb-4 d-flex">
+                <div class="card w-100">                    
+                    <img src="uploads/<?= $row['gambar'] ?>" class="card-img-top" alt="gambar berita" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-center" style="min-height: 60px; display: flex; align-items: center; justify-content: center;">
+                            <?= htmlspecialchars($row['judul']) ?>
+                        </h5>
                     </div>
                 </div>
             </div>
             <?php endwhile; ?>
+            <div class="text-center mt-auto">
+                <a href="gallery.php" class="btn btn-outline-dark">Selengkapnya</a>
+            </div>
         </div>
+    </div>
 </div>
 
     <!-- Statistik Jemaat Start -->
 <div class="container my-5">
-<h2 class="text-center mb-4">Statistik Jemaat</h2>
-    <div class="row">
+    <div class="row text-center" data-aos="fade-up" data-aos-duration="1000">
+    <h2 class="page-title text-center mb-5" style="font-weight: bolder; font-family: Montserrat;">
+    Statistik Jemaat</h2>
         <div class="col-md-6">
-            <canvas id="statistikDonut" style="height:300px"></canvas>
+            <canvas id="statistikDonut" style="height:500px; width:500px;"></canvas>
         </div>
         <div class="col-md-6">
             <h4>Total Jumlah Jemaat: <?= $total_jemaat; ?></h4>
@@ -197,13 +231,21 @@ $link_youtube = $streaming['link_youtube'];
 </div>
     <!-- Statistik Jemaat End -->
 
-    <!-- Footer Start -->
-<footer>
-    <div class="text-center text-white p-3" style="background-color: rgb(0, 0, 0);">
-        Copyright © 2025 :
-        <a class="text-white" href="https://github.com/AdrianoRibetosAffar">Multimedia GKI Pniel Kotaraja</a>
-      </div>
-</footer>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="mb-0">
+                        &copy; 2025 Multimedia GKI Pniel Kotaraja. All rights reserved. | 
+                        <a href="https://github.com/AdrianoRibetosAffar" class="text-white text-decoration-none">
+                            <i class="fab fa-github me-1"></i>Developer
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
     <!-- Footer End -->
 
     <!-- Modal -->
@@ -221,8 +263,8 @@ $link_youtube = $streaming['link_youtube'];
         type: "bar",
         data: {
             labels: <?= json_encode($nama_rayon); ?>, // Array label nama rayon dari PHP
-            datasets: [{
-                label: 'Jumlah Jemaat', // Label dataset agar tidak "undefined"
+                datasets: [{
+                    label: 'Jumlah Jemaat', // Label dataset agar tidak "undefined"
                 data: <?= json_encode($jumlah_jemaat); ?>, // Array jumlah jemaat dari PHP
                 backgroundColor: [
                     '#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796',
@@ -270,6 +312,29 @@ $link_youtube = $streaming['link_youtube'];
             }
         }
     });
+    // Navbar scroll effect
+window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('mainNav');
+    if (window.scrollY > 50) {
+        navbar.classList.add('navbar-scrolled');
+    } else {
+        navbar.classList.remove('navbar-scrolled');
+    }
+});
+
+// Smooth scrolling untuk anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
 </script>
 
 

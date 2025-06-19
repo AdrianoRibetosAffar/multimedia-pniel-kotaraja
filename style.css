@@ -1,75 +1,89 @@
-body{
-    font-family: 'Poppins', sans-serif;
-    }
+/* Base Styles */
+body {
+    font-family: 'montserrat', sans-serif;
+}
+
+.page-title {
+    text-align: center;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 50px;
+    position: relative;
+}
+        
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(135deg,rgb(0, 0, 0) 0%,#00d5ff 100%);
+}
+
 .page-section {
     padding: 8rem 0;
 }
-  
+
 .text-white-75 {
     color: rgb(255, 255, 255) !important;
 }
 
+/* Card Styles */
 .card-info {
     color: #000000 !important;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
     border-radius: 10px !important;
 }
 
-/* Navbar styling */
-.navbar {
-    background-color:  black; /* Latar belakang hitam */
-    padding: 0.1rem 0.1rem; /* Kurangi padding vertikal untuk membuat navbar lebih kecil */
-    transition: top 0.5s ease-in-out; /* Animasi untuk efek scroll */
+.card {
+    border: none;
+    border-radius: 10px;
 }
 
-.navbar .nav-link {
-    color: white; /* Teks putih */
-    padding: 10px 15px; /* Padding untuk link */
-    border-radius: 5px; /* Hover berbentuk border radius */
-    transition: color 0.3s ease, background-color 0.3s ease; /* Animasi hover */
+/* Navbar Styles */
+/* Atur tinggi minimum keseluruhan navbar */
+#mainNav {
+    min-height: 60px; /* Sesuaikan nilai ini sesuai keinginan, misal 50px atau 70px */
+    transition: min-height 0.3s ease-in-out; /* Tambahkan transisi agar perubahan lebih halus */
 }
 
-.navbar .nav-link:hover {
-    background-color: white; /* Latar belakang putih saat hover */
-    color: black; /* Teks hitam saat hover */
-
+/* Kurangi padding vertikal pada brand (logo dan judul) */
+#mainNav .navbar-brand {
+    padding-top: 0.5rem;   /* Padding atas lebih kecil */
+    padding-bottom: 0.5rem;/* Padding bawah lebih kecil */
+    height: auto; /* Pastikan tinggi disesuaikan otomatis dengan konten */
 }
 
-/* Navbar hide/show on scroll */
-.navbar.hidden {
-    top: -80px; /* Sembunyikan navbar dengan menggeser ke atas */
-}
-.navbar-brand {
-    display: flex;
-    align-items: center; /* Selaraskan logo dan teks secara vertikal */
-    gap: 5px; /* Tambahkan jarak antara logo dan teks */
+/* Sesuaikan ukuran logo agar tidak membuat navbar terlalu tinggi */
+#mainNav .navbar-brand img {
+    height: 30px; /* Sesuaikan tinggi logo, misal dari 40px ke 30px */
+    width: auto; /* Jaga rasio aspek */
 }
 
-.navbar-brand img {
-    height: 5rem; /* Sesuaikan tinggi logo */
-    width: auto; /* Pastikan proporsi logo tetap */
+/* Kurangi padding vertikal pada setiap item navigasi */
+#mainNav .navbar-nav .nav-item .nav-link {
+    padding-top: 0.5rem;    /* Padding atas lebih kecil */
+    padding-bottom: 0.5rem; /* Padding bawah lebih kecil */
+    font-size: 0.95rem;     /* Opsional: sedikit perkecil ukuran font */
 }
 
-.navbar-brand h2 {
-    font-size: 1.75rem; /* Sesuaikan ukuran teks */
-    margin: 0; /* Hilangkan margin default */
-    line-height: 1; /* Pastikan teks sejajar dengan logo */
-}
-.carousel-caption {
-    position: absolute;
-    top: 50%; /* Posisikan di tengah secara vertikal */
-    left: 50%; /* Posisikan di tengah secara horizontal */
-    transform: translate(-50%, -50%); /* Koreksi posisi agar benar-benar di tengah */
-    text-align: center; /* Pusatkan teks secara horizontal */
-    z-index: 10; /* Pastikan teks berada di atas gambar */
-}
-
-.carousel-caption h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #a8ff00;
+/* Override padding default Bootstrap untuk ul pada tampilan desktop */
+/* Karena ada kelas Bootstrap 'py-4 py-lg-0', kita perlu menimpanya */
+@media (min-width: 992px) { /* Ini adalah breakpoint default untuk navbar-expand-lg */
+    #mainNav .navbar-collapse {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    #mainNav .navbar-nav.py-4.py-lg-0 {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
 }
 
+
+/* Header/Masthead Styles */
 header.masthead {
     padding-top: 10.5rem;
     padding-bottom: 6rem;
@@ -80,14 +94,17 @@ header.masthead {
     background-attachment: scroll;
     background-position: center center;
     background-size: cover;
+    min-height: 100vh;
 }
+
 header.masthead .masthead-subheading {
     font-size: 1.5rem;
-    font-style:italic;
+    font-style: italic;
     line-height: 1.5rem;
     margin-bottom: 25px;
     font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
 header.masthead .masthead-heading {
     font-size: 3.25rem;
     font-weight: 700;
@@ -95,38 +112,15 @@ header.masthead .masthead-heading {
     margin-bottom: 2rem;
     font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-  
-@media (min-width: 768px) {
-header.masthead {
-    padding-top: 17rem;
-    padding-bottom: 12.5rem;
-}
-header.masthead .masthead-subheading {
-    font-size: 2.25rem;
-    font-style: italic;
-    line-height: 2.25rem;
-    margin-bottom: 2rem;
-}
-header.masthead .masthead-heading {
-    font-size: 4.5rem;
-    font-weight: 700;
-    line-height: 4.5rem;
-    margin-bottom: 4rem;
-}
+
+.page-header {
+    background: linear-gradient(rgba(24, 29, 56, .7), rgba(24, 29, 56, .7)), url(img/bg-web.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.carousel-caption p {
-    font-size: 1.5rem;
-    color: white;
-}
-.carousel-item img{
-    width: 100%; /* Lebar gambar 100% dari kontainer */
-    height: auto; /* Tinggi otomatis untuk menjaga rasio aspek */
-    object-fit: cover; /* Pastikan gambar sesuai dengan ukuran kontainer */
-    filter: brightness(0.7); /* Gelapkan gambar untuk kontras yang lebih baik */
-}
-
-
+/* Schedule Card Styles */
 .schedule-card {
     border: none;
     overflow: hidden;
@@ -141,10 +135,10 @@ header.masthead .masthead-heading {
 }
 
 .schedule-card .card-img {
-    z-index: 1; /* Pastikan gambar berada di bawah overlay */
+    z-index: 1;
     position: relative;
-    object-fit: cover; /* Pastikan gambar sesuai dengan ukuran kartu */
-    height: 250px; /* Atur tinggi gambar */
+    object-fit: cover;
+    height: 250px;
 }
 
 .schedule-card:hover .card-img {
@@ -152,15 +146,15 @@ header.masthead .masthead-heading {
 }
 
 .schedule-card .card-img-overlay {
-    opacity: 0; /* Teks tidak terlihat secara default */
-    transition: opacity 0.3s ease; /* Animasi transisi */
-    z-index: 2; /* Pastikan overlay berada di atas gambar */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Latar belakang semi-transparan */
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -170,7 +164,7 @@ header.masthead .masthead-heading {
 
 .schedule-card:hover .card-img-overlay {
     background: rgba(0, 0, 0, 0.7);
-    opacity: 1; /* Teks muncul saat hover */
+    opacity: 1;
 }
 
 .schedule-card h5 {
@@ -187,11 +181,8 @@ header.masthead .masthead-heading {
     font-size: 0.9rem;
     color: #a8ff00;
 }
-.card {
-    border: none;
-    border-radius: 10px;
-}
 
+/* Button Styles */
 .btn-danger {
     background-color: #ff0000;
     color: #fff;
@@ -206,68 +197,62 @@ header.masthead .masthead-heading {
     background-color: #cc0000;
     color: #fff;
 }
-.statistik{
+
+/* Statistics Section */
+.statistik {
     color: #000000 !important;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
     border-radius: 10px !important;
 }
-.page-header {
-    background: linear-gradient(rgba(24, 29, 56, .7), rgba(24, 29, 56, .7)), url(img/bg-web.png); /* Background Photo */
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+
+/* Media Queries */
+@media (min-width: 768px) {
+    header.masthead {
+        padding-top: 17rem;
+        padding-bottom: 12.5rem;
+    }
+    
+    header.masthead .masthead-subheading {
+        font-size: 2.25rem;
+        font-style: italic;
+        line-height: 2.25rem;
+        margin-bottom: 2rem;
+    }
+    
+    header.masthead .masthead-heading {
+        font-size: 4.5rem;
+        font-weight: 700;
+        line-height: 4.5rem;
+        margin-bottom: 4rem;
+    }
 }
 
-/* Styling untuk berita */
-/* Three columns side by side */
-.column {
-    float: left;
-    width: 33.3%;
-    margin-bottom: 16px;
-    padding: 0 8px;
-  }
-  
-  /* Display the columns below each other instead of side by side on small screens */
-  @media screen and (max-width: 650px) {
-    .column {
-      width: 100%;
-      display: block;
+@media (max-width: 768px) {
+    .gallery-card {
+        height: 250px;
     }
-  }
-  
-  /* Add some shadows to create a card effect */
-  .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Some left and right padding inside the container */
-  .container {
-    padding: 0 16px;
-  }
-  
-  /* Clear floats */
-  .container::after, .row::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  
-  .title {
-    color: grey;
-  }
-  
-  .button {
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
+    
+    .gallery-card .card-img-top {
+        height: 170px;
+    }
+    
+    .contact-container {
+        flex-direction: column;
+    }
+    
+    .contact-form, .map-container {
+        width: 100%;
+    }
+    
+    .map-container {
+        margin-top: 30px;
+    }
+}
+
+footer {
+    background: black;
     color: white;
-    background-color: #000;
     text-align: center;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .button:hover {
-    background-color: #555;
-  }
+    padding: 20px 0;
+    margin-top: 50px;
+}

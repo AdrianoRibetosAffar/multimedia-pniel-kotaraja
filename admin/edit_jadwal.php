@@ -43,7 +43,7 @@ if (isset($_POST['update'])) {
 
     if (mysqli_query($conn, $query)) {
         $_SESSION['success'] = "Jadwal berhasil diperbarui!";
-        header("Location: dashboard.php");
+        header("Location: edit_jadwal.php");
         exit();
     } else {
         $_SESSION['error'] = "Gagal update data.";
