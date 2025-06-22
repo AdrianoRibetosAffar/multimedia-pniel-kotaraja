@@ -33,19 +33,24 @@ if (isset($_POST['update'])) {
     <meta charset="UTF-8">
     <title>Edit Link Live Streaming</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style-admin.css">
 </head>
 <body class="bg-light">
 
 <!-- Sidebar -->
 <div class="sidebar">
-    <h4 class="text-white text-center py-3">Admin Multimedia</h4>
-    <a href="dashboard.php">Dashboard</a>
-    <a href="tambah_jadwal.php">Jadwal Ibadah</a>
-    <a href="tambah_berita.php">Gallery Berita</a>    
-    <a href="statistik.php">Kelola Statistik</a>
-    <a href="edit_live_streaming.php">Live Streaming</a>
-    <a href="logout.php">Logout</a>
+    <h4 class="text-white text-center py-3">
+        <img src="../img/logo-judul.png" alt="Logo Admin" style="height: 30px; margin-right: 2px; vertical-align: middle;">
+        Admin Multimedia
+    </h4>
+    <a href="dashboard.php"><i class="fas fa-fw fa-tachometer-alt me-2"></i>Dashboard</a>
+    <a href="tambah_jadwal.php"><i class="far fa-fw fa-calendar-alt me-2"></i>Jadwal Ibadah</a>
+    <a href="tambah_berita.php"><i class="far fa-fw fa-images me-2"></i>Gallery Berita</a>      
+    <a href="statistik.php"><i class="fas fa-fw fa-chart-bar me-2"></i>Kelola Statistik</a>
+    <a href="edit_live_streaming.php"><i class="fas fa-fw fa-video me-2"></i>Live Streaming</a>
+    <a href="pesan.php"><i class="far fa-fw fa-envelope me-2"></i>Pesan Jemaat</a>
+    <a href="logout.php"><i class="fas fa-fw fa-sign-out-alt me-2"></i>Logout</a>
 </div>
 
 <div class="container py-5">

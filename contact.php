@@ -10,14 +10,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message = mysqli_real_escape_string($conn, $_POST['message']);
     
     // Insert message into database
-    $sql = "INSERT INTO contact_messages (name, email, subject, message, created_at) VALUES (?, ?, ?, ?, NOW())";
+    $sql = "INSERT INTO contact_messages (name, email, subject, message, status, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $subject, $message);
     
+    // Set default status to 'unread'
+    $default_status = 'unread'; 
+    mysqli_stmt_bind_param($stmt, "sssss", $name, $email, $subject, $message, $default_status);
+    
+    // Hapus variabel $success_message dan $error_message
     if (mysqli_stmt_execute($stmt)) {
-        $success_message = "Pesan Anda berhasil dikirim! Terima kasih telah menghubungi kami.";
+        // Jika berhasil, tidak ada pesan yang disimpan ke variabel
     } else {
-        $error_message = "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.";
+        // Jika gagal, tidak ada pesan yang disimpan ke variabel
     }
     
     mysqli_stmt_close($stmt);
@@ -30,14 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontak - Multimedia GKI Pniel Kotaraja</title>
-    <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/logo-judul.png" />
-    <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="mulmed.css">
@@ -119,22 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             border-radius: 15px;
         }
         
-        .alert {
-            border-radius: 10px;
-            border: none;
-            margin-bottom: 20px;
-        }
-        
-        .alert-success {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-            color: white;
-        }
-        
-        .alert-danger {
-            background: linear-gradient(135deg, #f44336 0%, #da190b 100%);
-            color: white;
-        }   
-        
         @media (max-width: 768px) {
             .contact-info, .contact-form-container {
                 padding: 20px;
@@ -149,12 +133,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 
-    <!--  Navbar Start-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand text-white d-flex align-items-center me-auto" href="#">
-                <img src="img/logo-mulmed.png" alt="Logo">
-                <h2>Multimedia GKI Pniel Kotaraja</h2>
+                <img src="img/logo-mulmed.png" alt="Logo" style="height: 70px; width: auto; margin-right: 5px;">
+                <h5 class="mb-0">Multimedia GKI Pniel Kotaraja</h5>
             </a>
             <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
@@ -178,9 +161,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </nav>
-    <!-- Navbar End -->
-
-        <!-- Header Start -->
     <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
             <div class="row justify-content-center">
@@ -190,33 +170,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </div>
-    <!-- Header End -->
-    
-    <!-- Main Content Start -->
     <div class="main-content">
         <div class="container">
         <h2 class="page-title text-center mb-5">
             Hubungi Kami
-        </h2>
-            
-            <!-- Success/Error Messages -->
-            <?php if (isset($success_message)): ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert" data-aos="fade-down">
-                    <i class="fas fa-check-circle me-2"></i>
-                    <?php echo $success_message; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            <?php endif; ?>
-            
-            <?php if (isset($error_message)): ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert" data-aos="fade-down">
-                    <i class="fas fa-exclamation-circle me-2"></i>
-                    <?php echo $error_message; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            <?php endif; ?>
-            
-            <!-- Contact Section -->
+        </h2>    
             <div class="row">
                 <div class="col-lg-8 mb-4">
                     <div class="contact-section" data-aos="fade-right">
@@ -224,34 +182,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col-md-5">
                                 <div class="contact-info h-100">
                                     <h3>Informasi Kontak</h3>
-                                    <div class="contact-item">
-                                        <i class="fas fa-map-marker-alt"></i>
+                                    <div class="contact-item"> 
                                         <div>
                                             <strong>Alamat:</strong><br>
-                                            Jl. Raya Kotaraja No. 123<br>
-                                            Jayapura, Papua 99351
+                                            Jalan Raya Abepura - Kotaraja<br>
+                                            Jayapura, Papua 99225
                                         </div>
                                     </div>
                                     <div class="contact-item">
-                                        <i class="fas fa-phone"></i>
                                         <div>
                                             <strong>Telepon:</strong><br>
-                                            +62 967 123 456
+                                            +62821-2544-3659
                                         </div>
                                     </div>
                                     <div class="contact-item">
-                                        <i class="fas fa-envelope"></i>
                                         <div>
                                             <strong>Email:</strong><br>
-                                            info@gkipnielkotaraja.org
-                                        </div>
-                                    </div>
-                                    <div class="contact-item">
-                                        <i class="fas fa-clock"></i>
-                                        <div>
-                                            <strong>Jam Layanan:</strong><br>
-                                            Senin - Jumat: 08:00 - 17:00<br>
-                                            Sabtu: 08:00 - 12:00
+                                            mulmed.gkipnielkotaraja@gmail.com
                                         </div>
                                     </div>
                                 </div>
@@ -288,31 +235,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
                 
-                <!-- Map Section -->
                 <div class="col-lg-4 mb-4">
                     <div class="map-container" data-aos="fade-left">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.7234567890123!2d140.7180902!3d-2.5913901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwMzUnMjkuMCJTIDE0MMKwNDMnMDUuMSJF!5e0!3m2!1sen!2sid!4v1638319148355!5m2!1sen!2sid" 
-                            width="100%" 
-                            height="500" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
+                    <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1730.4246687096143!2d140.67556448594766!3d-2.601370841679817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x686cf58b69f3b487%3A0x28c54e0265a81d32!2sGereja%20GKI%20Pniel%20Kotaraja!5e1!3m2!1sid!2sid!4v1750401591096!5m2!1sid!2sid" 
+                    width="600" 
+                    height="543" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Main Content End -->
-
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <p class="mb-0">
-                        &copy; 2025 Multimedia GKI Pniel Kotaraja. All rights reserved. | 
+                        © 2025 Multimedia GKI Pniel Kotaraja. All rights reserved. | 
                         <a href="https://github.com/AdrianoRibetosAffar" class="text-white text-decoration-none">
                             <i class="fab fa-github me-1"></i>Developer
                         </a>
@@ -322,7 +266,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -331,15 +274,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             easing: 'ease-in-out',
             once: true
         });
-        
-        // Auto hide alerts after 5 seconds
-        setTimeout(function() {
-            const alerts = document.querySelectorAll('.alert');
-            alerts.forEach(function(alert) {
-                const bsAlert = new bootstrap.Alert(alert);
-                bsAlert.close();
-            });
-        }, 5000);
     </script>
 </body>
 </html>

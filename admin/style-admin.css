@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font lebih modern */
+    background-color: #f8f9fa; /* Latar belakang sangat terang */
+    display: flex; /* Untuk tata letak sidebar dan konten */
+    min-height: 100vh;
+    color: #343a40; /* Teks default gelap */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #212529; /* Hitam gelap untuk sidebar */
+    color: #ffffff;
+    padding-top: 20px;
+    position: fixed;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Bayangan lembut */
+    overflow-y: auto; /* Jika menu sidebar panjang, bisa di-scroll */
+    z-index: 1000;
+}
+
+.sidebar a {
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 1.1em;
+    color: #adb5bd; /* Abu-abu terang untuk tautan */
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar a:hover, .sidebar a.active {
+    background-color: #343a40; /* Abu-abu lebih gelap saat hover/aktif */
+    color: #ffffff;
+    border-left: 5px solid #6c757d; /* Aksen abu-abu gelap */
+}
+
+.sidebar .text-center {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #495057; /* Garis pemisah */
+}
+
+/* Konten utama */
+.content {
+    margin-left: 250px; /* Sesuaikan dengan lebar sidebar */
+    padding: 30px; /* Padding lebih besar */
+    flex-grow: 1; /* Agar konten mengisi sisa ruang */
+    background-color: #ffffff; /* Konten utama putih */
+    border-left: 1px solid #e9ecef; /* Garis pemisah dari sidebar */
+    min-height: 100vh;
+}
+
+/* Untuk container yang ada di file PHP (jika masih digunakan di halaman lain) */
+.container {
+    margin-left: 250px !important; /* Override margin bootstrap */
+    padding: 20px;
+}
+
+/* Gaya khusus untuk elemen di dalam konten */
+.content h2, .content h4 {
+    color: #212529; /* Judul gelap */
+    margin-bottom: 20px;
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Bayangan lembut */
+}
+
+.card.bg-primary { /* Override bootstrap primary color */
+    background-color: #343a40 !important; /* Abu-abu gelap untuk card */
+    color: #ffffff !important;
+}
+
+.card-title {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: #e9ecef; /* Teks judul card lebih terang */
+}
+
+.card-text {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.table {
+    margin-top: 30px;
+    border-collapse: separate; /* Untuk radius border */
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead.table-dark { /* Override bootstrap dark table */
+    background-color: #212529; /* Hitam gelap untuk header tabel */
+    color: #ffffff;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    border-color: #dee2e6; /* Border abu-abu terang */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f1f3f5; /* Warna stripe abu-abu sangat terang */
+}
+

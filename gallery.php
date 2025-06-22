@@ -128,8 +128,8 @@ $berita = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC");
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand text-white d-flex align-items-center me-auto" href="#">
-                <img src="img/logo-mulmed.png" alt="Logo">
-                <h2>Multimedia GKI Pniel Kotaraja</h2>
+                <img src="img/logo-mulmed.png" alt="Logo" style="height: 70px; width: auto; margin-right: 5px;">
+                <h5 class="mb-0">Multimedia GKI Pniel Kotaraja</h5>
             </a>
             <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
